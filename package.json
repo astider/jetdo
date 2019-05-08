@@ -7,7 +7,7 @@
     "build": "browserify ./src/index.js -o ./public/bundle.js",
     "hot-build": "watchify ./src/index.js -o ./public/bundle.js -d",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b production -d public"
+    "deploy": "gh-pages -b gh-pages -d public"
   },
   "repository": {
     "type": "git",
