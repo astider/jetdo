@@ -1,0 +1,30 @@
+{
+  "name": "jetdo",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build": "browserify ./src/index.js -o ./public/bundle.js",
+    "hot-build": "watchify ./src/index.js -o ./public/bundle.js -d",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b production -d public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkurno/jetdo.git"
+  },
+  "keywords": [
+    "jetdo"
+  ],
+  "author": "kkurno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kkurno/jetdo/issues"
+  },
+  "homepage": "https://github.com/kkurno/jetdo#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "watchify": "^3.11.1",
+    "gh-pages": "^2.0.1"
+  }
+}
