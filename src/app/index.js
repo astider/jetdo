@@ -12,6 +12,8 @@ class app {
   }
 
   loop(timestamp) {
+    if(!data.get('status.running')) return;
+
     const deltaTime = timestamp - this.lastTime;
     this.lastTime = timestamp;
 

@@ -1,3 +1,8 @@
 module.exports = {
-  state: 'init'
+  status: {
+    running: true,
+  },
+  state: {
+    initial: true,
+  },
 };
