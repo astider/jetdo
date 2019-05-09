@@ -1,22 +1,22 @@
 const initialData = require('./initialData');
 const utils = require('../utils');
 
-class database {
+class data {
   constructor() {
     this.data = initialData;
   }
 
-  get(keys) {
+  static get(keys) {
     return utils.findDeep(keys, this.data);
   }
 
-  update(keys, value) {
+  static update(keys, value) {
     this.data = utils.assocPath(keys, value, this.data);
   }
 
-  reset() {
+  static reset() {
     this.data = initialData;
   }
 }
 
-module.exports = database;
+module.exports = data;
