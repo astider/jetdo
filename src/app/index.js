@@ -1,5 +1,6 @@
 const data = require('../data');
 const game = require('./game');
+
 class app {
   constructor() {
     this.ctx = document.getElementById('canvas').getContext('2d');
