@@ -26,13 +26,13 @@ class data {
   }
 
   /**
-   * update
+   * set
    * @param {string} keys 'a.b.c'
    * @param {*} value
    */
-  static update(keys, value) {
+  static set(keys, value) {
     if (this.data === undefined) throw Error('Please create the initial data by run "init" method');
-    this.data = utils.assocPath(keys, value, this.data);
+    this.data = utils.assocPath(keys.split('.'), value, this.data);
   }
 
   /**
