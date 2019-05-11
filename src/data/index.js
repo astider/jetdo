@@ -18,21 +18,21 @@ class data {
 
   /**
    * get
-   * @param {string} keys 'a.b.c'
+   * @param {string} keyPath 'a.b.c'
    */
-  static get(keys) {
+  static get(keyPath) {
     if (this.data === undefined) throw Error('Please create the initial data by run "init" method');
-    return utils.findDeep(keys.split('.'), this.data);
+    return utils.findDeep(keyPath.split('.'), this.data);
   }
 
   /**
    * set
-   * @param {string} keys 'a.b.c'
+   * @param {string} keyPath 'a.b.c'
    * @param {*} value
    */
-  static set(keys, value) {
+  static set(keyPath, value) {
     if (this.data === undefined) throw Error('Please create the initial data by run "init" method');
-    this.data = utils.assocPath(keys.split('.'), value, this.data);
+    this.data = utils.assocPath(keyPath.split('.'), value, this.data);
   }
 
   /**
