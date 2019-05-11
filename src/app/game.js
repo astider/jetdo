@@ -1,9 +1,16 @@
+const background = require('./background');
+
 class game {
-  constructor() {}
+  constructor(width, height) {
+    this.background = new background(width, height);
+  }
 
-  update(deltaTime) {}
+  update(deltaTime) {
+  }
 
-  render(ctx) {}
+  render(ctx) {
+    this.background.render();
+  }
 }
 
 module.exports = game;

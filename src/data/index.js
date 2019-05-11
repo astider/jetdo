@@ -34,6 +34,13 @@ class data {
     if (this.data === undefined) throw Error('Please create the initial data by run "init" method');
     this.data = utils.assocPath(keys, value, this.data);
   }
+
+  /**
+   * get a name of the current game state
+   */
+  static getCurrentState() {
+    return Object.keys(this.data.state).find(stateName => this.data.state[stateName] === true);
+  }
 }
 
 module.exports = data;

@@ -47,7 +47,14 @@ const findDeep = (keys, obj) => {
   return undefined;
 };
 
+/**
+ * getBackgroundImagePath
+ * @param {string} name
+ */
+const getBackgroundImagePath = name => `assets/backgrounds/${name}.jpg`;
+
 module.exports = {
   findDeep,
-  assocPath
+  assocPath,
+  getBackgroundImagePath,
 };

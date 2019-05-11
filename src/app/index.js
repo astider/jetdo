@@ -2,12 +2,15 @@ const data = require('../data');
 const game = require('./game');
 
 class app {
-  constructor() {
-    this.ctx = document.getElementById('canvas').getContext('2d');
-    this.ctx.width = window.innerWidth;
-    this.ctx.height = window.innerHeight;
+  constructor(width, height) {
+    const gameLayerCanvas = document.getElementById('game-layer');
+    gameLayerCanvas.style.width = `${width}px`;
+    gameLayerCanvas.style.height = `${height}px`;
+    this.gameLayer = gameLayerCanvas.getContext('2d');
+    this.gameLayer.width = width;
+    this.gameLayer.height = height;
     this.lastTime = 0;
-    this.game = new game();
+    this.game = new game(width, height);
 
     this.loop = this.loop.bind(this);
   }
@@ -19,8 +22,8 @@ class app {
     this.lastTime = timestamp;
 
     this.game.update(deltaTime);
-    this.ctx.clearRect(0, 0, this.ctx.width, this.ctx.height);
-    this.game.render(this.ctx);
+    this.gameLayer.clearRect(0, 0, this.gameLayer.width, this.gameLayer.height);
+    this.game.render(this.gameLayer);
     window.requestAnimationFrame(this.loop);
   }
 
@@ -30,6 +33,4 @@ class app {
   }
 }
 
-module.exports = {
-  run: () => (new app()).run(),
-};
+module.exports = app;
