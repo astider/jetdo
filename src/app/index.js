@@ -25,13 +25,11 @@ class app {
   }
 
   run() {
+    data.init();
     window.requestAnimationFrame(this.loop);
   }
 }
 
 module.exports = {
-  run: () => {
-    const main = new app();
-    main.run();
-  },
+  run: () => (new app()).run(),
 };
