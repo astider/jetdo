@@ -1,52 +1,108 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-const database = require('../database');
+class game {
+  constructor() {}
 
-const run = () => {
-  const db = new database();
+  update(deltaTime) {}
 
-  const canvas = document.getElementById('canvas');
-  const ctx = canvas.getContext('2d');
+  render(ctx) {}
+}
+
+module.exports = game;
+
+},{}],2:[function(require,module,exports){
+const data = require('../data');
+const game = require('./game');
+
+class app {
+  constructor() {
+    this.ctx = document.getElementById('canvas').getContext('2d');
+    this.ctx.width = window.innerWidth;
+    this.ctx.height = window.innerHeight;
+    this.lastTime = 0;
+    this.game = new game();
+
+    this.loop = this.loop.bind(this);
+  }
+
+  loop(timestamp) {
+    if(!data.get('status.running')) return;
+
+    const deltaTime = timestamp - this.lastTime;
+    this.lastTime = timestamp;
+
+    this.game.update(deltaTime);
+    this.ctx.clearRect(0, 0, this.ctx.width, this.ctx.height);
+    this.game.render(this.ctx);
+    window.requestAnimationFrame(this.loop);
+  }
+
+  run() {
+    data.init();
+    window.requestAnimationFrame(this.loop);
+  }
 }
 
 module.exports = {
-  run,
+  run: () => (new app()).run(),
 };
 
-},{"../database":2}],2:[function(require,module,exports){
+},{"../data":3,"./game":1}],3:[function(require,module,exports){
 const initialData = require('./initialData');
 const utils = require('../utils');
 
-class database {
-  constructor() {
+class data {
+  /**
+   * create the initial data
+   */
+  static init() {
     this.data = initialData;
   }
 
-  get(keys) {
-    return utils.findDeep(keys, this.data);
+  /**
+   * reset the whole data to initial
+   */
+  static reset() {
+    this.data = initialData;
   }
 
-  update(keys, value) {
+  /**
+   * get
+   * @param {string} keys 'a.b.c'
+   */
+  static get(keys) {
+    if (this.data === undefined) throw Error('Please create the initial data by run "init" method');
+    return utils.findDeep(keys.split('.'), this.data);
+  }
+
+  /**
+   * update
+   * @param {string} keys 'a.b.c'
+   * @param {*} value
+   */
+  static update(keys, value) {
+    if (this.data === undefined) throw Error('Please create the initial data by run "init" method');
     this.data = utils.assocPath(keys, value, this.data);
-  }
-
-  reset() {
-    this.data = initialData;
   }
 }
 
-module.exports = database;
+module.exports = data;
 
-},{"../utils":5,"./initialData":3}],3:[function(require,module,exports){
+},{"../utils":6,"./initialData":4}],4:[function(require,module,exports){
 module.exports = {
-  state: 'init'
+  status: {
+    running: true,
+  },
+  state: {
+    initial: true,
+  },
 };
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 const app = require('./app');
 
 app.run();
 
-},{"./app":1}],5:[function(require,module,exports){
+},{"./app":2}],6:[function(require,module,exports){
 const isObject = (v) => (!Array.isArray(v) && v !== null && typeof v === 'object');
 
 /**
@@ -101,4 +157,4 @@ module.exports = {
   assocPath
 };
 
-},{}]},{},[4]);
+},{}]},{},[5]);
