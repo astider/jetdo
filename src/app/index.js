@@ -1,5 +1,6 @@
 const data = require('../data');
 const game = require('./game');
+const rule = require('./rule');
 
 class app {
   constructor(width, height) {
@@ -16,8 +17,6 @@ class app {
   }
 
   loop(timestamp) {
-    if(!data.get('status.running')) return;
-
     const deltaTime = timestamp - this.lastTime;
     this.lastTime = timestamp;
     this.frameAcc += 1;
@@ -30,6 +29,7 @@ class app {
 
   run() {
     data.init();
+    this.rule.init();
     this.game.init();
 
     setInterval(() => {

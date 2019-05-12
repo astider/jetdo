@@ -12,8 +12,8 @@ class game {
     this.width = width;
     this.height= height;
     this.background = new background(width, height);
-    this.playerOne = new jet(PLAYER_ONE_KEY_PATH);
-    this.playerTwo = new jet(PLAYER_TWO_KEY_PATH);
+    this.playerOne = new jet(PLAYER_ONE_KEY_PATH, false);
+    this.playerTwo = new jet(PLAYER_TWO_KEY_PATH, true);
   }
 
   init() {
@@ -23,14 +23,14 @@ class game {
       ...playerOneData,
       position: {
         x: 50,
-        y: this.height / 2,
+        y: this.height * 0.5,
       }
     });
     data.set(PLAYER_TWO_KEY_PATH, {
       ...playerTwoData,
       position: {
         x: this.width - 50,
-        y: this.height / 2,
+        y: this.height * 0.5,
       }
     });
     this.playerOne.init();
@@ -38,6 +38,7 @@ class game {
   }
 
   update(deltaTime) {
+    if(!data.get('status.running')) return;
     // if (data.getCurrentState() === STATE_INITIAL) {
 
     // }

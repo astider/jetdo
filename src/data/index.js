@@ -21,7 +21,7 @@ class data {
    * @param {string} keyPath 'a.b.c'
    */
   static get(keyPath) {
-    if (this.data === undefined) throw Error('Please create the initial data by run "init" method');
+    if (this.data === undefined) throw Error('Please create the initial data by running "init" method');
     return utils.findDeep(keyPath.split('.'), this.data);
   }
 
@@ -31,7 +31,7 @@ class data {
    * @param {*} value
    */
   static set(keyPath, value) {
-    if (this.data === undefined) throw Error('Please create the initial data by run "init" method');
+    if (this.data === undefined) throw Error('Please create the initial data by running "init" method');
     this.data = utils.assocPath(keyPath.split('.'), value, this.data);
   }
 
@@ -39,6 +39,7 @@ class data {
    * get a name of the current game state
    */
   static getCurrentState() {
+    if (this.data === undefined) throw Error('Please create the initial data by running "init" method');
     return Object.keys(this.data.state).find(stateName => this.data.state[stateName] === true);
   }
 }

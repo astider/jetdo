@@ -3,7 +3,10 @@ const basePlayerModel = {
     x: 0,
     y: 0,
   },
-  color: '',
+  color: {
+    base: '',
+    head: '',
+  },
   size: {
     w: 50,
     h: 14,
@@ -20,11 +23,17 @@ module.exports = {
   player: {
     one: {
       ...basePlayerModel,
-      color: 'red',
+      color: {
+        base: 'red',
+        head: 'orange',
+      },
     },
     two: {
       ...basePlayerModel,
-      color: 'blue',
+      color: {
+        base: 'blue',
+        head: 'aqua',
+      },
     },
   },
 };
