@@ -125,6 +125,7 @@ class rule {
     for (let i = 0; i < list.length; i += 1) {
       const ruleName = list[i];
       if (this.rules[ruleName] === undefined) continue;
+      if (!this.rules[ruleName].activated) continue;
       if (this.rules[ruleName].check()) {
         this.rules[ruleName].matched = true;
       } else {
