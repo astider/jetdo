@@ -1,7 +1,7 @@
 const initialData = require('./initialData');
 const utils = require('../utils');
 
-const getInitialData = Immutable.fromJS(initialData).toJS();
+const getInitialData = () => Immutable.fromJS(initialData).toJS();
 
 class data {
   /**
