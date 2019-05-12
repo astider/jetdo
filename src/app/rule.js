@@ -86,14 +86,23 @@ class rule {
     return this.rules[ruleName].activated;
   }
 
-  static check(ruleName) {
+  /**
+   * check
+   * @param {String[]} list the list of rule name
+   */
+  static check(list) {
     if (this.rules === undefined) throw Error('Please setup by running "init" method');
-    if (this.rules[ruleName] === undefined) return {};
-    return {
-      name: ruleName,
-      passed: this.rules[ruleName].check(),
-      activated: this.rules[ruleName].activated,
-    };
+    const rules = [];
+    for (let i = 0; i < list.length; i += 1) {
+      const ruleName = list[i];
+      if (this.rules[ruleName] === undefined) continue;
+      rules.push({
+        name: ruleName,
+        passed: this.rules[ruleName].check(),
+        activated: this.rules[ruleName].activated,
+      });
+    }
+    return rules
   }
 
   static checkAll() {
@@ -107,15 +116,20 @@ class rule {
       }));
   }
 
-  static validate(ruleName) {
+  /**
+   * validate
+   * @param {String[]} list the list of rule name
+   */
+  static validate(list) {
     if (this.rules === undefined) throw Error('Please setup by running "init" method');
-    if (this.rules[ruleName] === undefined) return;
-    if (this.rules[ruleName].activated !== true) return;
-
-    if (this.rules[ruleName].check()) {
-      this.rules[ruleName].matched = true;
-    } else {
-      this.rules[ruleName].matched = false;
+    for (let i = 0; i < list.length; i += 1) {
+      const ruleName = list[i];
+      if (this.rules[ruleName] === undefined) continue;
+      if (this.rules[ruleName].check()) {
+        this.rules[ruleName].matched = true;
+      } else {
+        this.rules[ruleName].matched = false;
+      }
     }
   }
 
