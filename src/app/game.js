@@ -53,9 +53,6 @@ class game {
     if(!data.get('status.running')) return;
 
     rule.validateAll();
-    // if (data.getCurrentState() === STATE_INITIAL) {
-
-    // }
   }
 
   render(ctx) {

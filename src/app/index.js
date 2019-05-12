@@ -8,6 +8,8 @@ class app {
     gameLayerCanvas.width = width;
     gameLayerCanvas.height = height;
     this.gameLayer = gameLayerCanvas.getContext('2d');
+    this.width = width;
+    this.height = height;
     this.frameAcc = 0;
     this.lastTime = 0;
     this.game = new game(width, height);
@@ -21,7 +23,7 @@ class app {
     this.frameAcc += 1;
 
     this.game.update(deltaTime);
-    this.gameLayer.clearRect(0, 0, this.gameLayer.width, this.gameLayer.height);
+    this.gameLayer.clearRect(0, 0, this.width, this.height);
     this.game.render(this.gameLayer);
     window.requestAnimationFrame(this.loop);
   }

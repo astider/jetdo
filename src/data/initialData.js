@@ -40,12 +40,12 @@ module.exports = {
         head: 'orange',
       },
       keyBinding: {
-        up: 87,
-        down: 83,
-        left: 65,
-        right: 68,
-        fire: 70,
-        ultimate: 71,
+        up: ['w', 'W'],
+        down: ['s', 'S'],
+        left: ['a', 'A'],
+        right: ['d', 'D'],
+        fire: ['f', 'F'],
+        ultimate: ['g', 'G'],
       }
     },
     two: {
@@ -55,12 +55,12 @@ module.exports = {
         head: 'aqua',
       },
       keyBinding: {
-        up: 38,
-        down: 40,
-        left: 37,
-        right: 39,
-        fire: 219,
-        ultimate: 221,
+        up: ['ArrowUp'],
+        down: ['ArrowDown'],
+        left: ['ArrowLeft'],
+        right: ['ArrowRight'],
+        fire: ['['],
+        ultimate: [']'],
       }
     },
   },

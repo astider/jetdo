@@ -7,17 +7,17 @@ class event {
    * add an event listener
    * @param {String} eventType e.g. keyup, keydown
    * @param {String} eventName unique name
-   * @param {number} keyCode
+   * @param {string[]} keys
    * @param {Function} func
    */
-  static add(eventType, eventName, keyCode, func) {
+  static add(eventType, eventName, keys, func) {
     if (this.eventList === undefined) throw Error('Please setup by running "init" method');
     if (Object.keys(this.eventList).indexOf(eventName) !== -1) throw Error('Duplicate event name');
     this.eventList[eventName] = {
       type: eventType,
-      code: keyCode,
+      codes: keys,
       func: (e) => {
-        if (e.keyCode === keyCode || e.which === keyCode) func(e);
+        if (keys.indexOf(e.key) !== -1) func(e);
       } };
     document.addEventListener(eventType, this.eventList[eventName].func);
   }
