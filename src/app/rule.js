@@ -24,7 +24,7 @@ class rule {
 
   /**
    * activate
-   * @param {{name: String, priority?: Number}[]} list [{ name: 'onHit', priority: 0 }]
+   * @param {{name: String, priority?: Number}[]} list [{ name: 'onHit', priority: 0 }, { name: 'onDie', priority: 1 }]
    */
   static activate(list) {
     if (this.rules === undefined) throw Error('Please setup by running "init" method');
