@@ -18,7 +18,7 @@ class data {
 
   /**
    * get
-   * @param {string} keyPath 'a.b.c'
+   * @param {String} keyPath 'a.b.c'
    */
   static get(keyPath) {
     if (this.data === undefined) throw Error('Please create the initial data by running "init" method');
@@ -27,7 +27,7 @@ class data {
 
   /**
    * set
-   * @param {string} keyPath 'a.b.c'
+   * @param {String} keyPath 'a.b.c'
    * @param {*} value
    */
   static set(keyPath, value) {

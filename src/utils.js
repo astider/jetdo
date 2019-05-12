@@ -2,6 +2,9 @@ const isObject = (v) => (!Array.isArray(v) && v !== null && typeof v === 'object
 
 /**
  * assocPath
+ * @param {String[]} path
+ * @param {*} val
+ * @param {{}} obj
  * @example
  * assocPath(['a','b','c'], 'new', {a: {b: {c: 'old'}}}) // => {a: {b: {c: 'new'}}}
  * assocPath(['a','b','c'], 'new', {a: {b: {c: 'old', d: 'old'}}}) // => {a: {b: {c: 'new', d: 'old'}}}
@@ -30,6 +33,9 @@ const assocPath = (path, val, obj) => {
 
 /**
  * findDeep
+ *  * @param {String[]} path
+ * @param {String[]} keys
+ * @param {{}} obj
  * @example
  * findDeep(['a', 'b'], { a: { b: 'value' } }) // => 'value'
  * findDeep(['a', 'c'], { a: { b: 'value' } }) // => undefined
@@ -49,7 +55,7 @@ const findDeep = (keys, obj) => {
 
 /**
  * getBackgroundImagePath
- * @param {string} name
+ * @param {String} name
  */
 const getBackgroundImagePath = name => `assets/backgrounds/${name}.jpg`;
 

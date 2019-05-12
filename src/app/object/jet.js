@@ -3,8 +3,8 @@ const data = require('../../data');
 class jet {
   /**
    * 
-   * @param {string} keyPath 
-   * @param {boolean} [isInverseDirection]
+   * @param {String} keyPath 
+   * @param {Boolean} [isInverseDirection]
    */
   constructor(keyPath, isInverseDirection) {
     this.keyPath = keyPath;
