@@ -29,7 +29,7 @@ class app {
 
   run() {
     data.init();
-    this.rule.init();
+    rule.init();
     this.game.init();
 
     setInterval(() => {
