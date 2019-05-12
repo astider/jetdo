@@ -11,6 +11,15 @@ const basePlayerModel = {
     w: 50,
     h: 14,
   },
+  hp: 5,
+  keyBinding: {
+    up: null,
+    down: null,
+    left: null,
+    right: null,
+    fire: null,
+    ultimate: null,
+  }
 }
 
 module.exports = {
@@ -20,6 +29,9 @@ module.exports = {
   state: {
     initial: true,
   },
+  keyBinding: {
+    enter: 13,
+  },
   player: {
     one: {
       ...basePlayerModel,
@@ -27,6 +39,14 @@ module.exports = {
         base: 'red',
         head: 'orange',
       },
+      keyBinding: {
+        up: 87,
+        down: 83,
+        left: 65,
+        right: 68,
+        fire: 70,
+        ultimate: 71,
+      }
     },
     two: {
       ...basePlayerModel,
@@ -34,6 +54,14 @@ module.exports = {
         base: 'blue',
         head: 'aqua',
       },
+      keyBinding: {
+        up: 38,
+        down: 40,
+        left: 37,
+        right: 39,
+        fire: 219,
+        ultimate: 221,
+      }
     },
   },
 };
