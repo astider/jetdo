@@ -1,19 +1,21 @@
 const initialData = require('./initialData');
 const utils = require('../utils');
 
+const getInitialData = Immutable.fromJS(initialData).toJS();
+
 class data {
   /**
    * create the initial data
    */
   static init() {
-    this.data = initialData;
+    this.data = getInitialData();
   }
 
   /**
    * reset the whole data to initial
    */
   static reset() {
-    this.data = initialData;
+    this.data = getInitialData();
   }
 
   /**

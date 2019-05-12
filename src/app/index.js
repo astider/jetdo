@@ -1,6 +1,5 @@
 const data = require('../data');
 const game = require('./game');
-const rule = require('./rule');
 
 class app {
   constructor(width, height) {
@@ -29,7 +28,6 @@ class app {
 
   run() {
     data.init();
-    rule.init();
     this.game.init();
 
     setInterval(() => {

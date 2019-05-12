@@ -1,5 +1,8 @@
 const data = require('../data');
+
 const { STATE_INITIAL, STATE_PLAYING } = require('../constants');
+
+const rule = require('./rule');
 
 const background = require('./background');
 const jet = require('./object/jet');
@@ -14,9 +17,11 @@ class game {
     this.background = new background(width, height);
     this.playerOne = new jet(PLAYER_ONE_KEY_PATH, false);
     this.playerTwo = new jet(PLAYER_TWO_KEY_PATH, true);
+
+    this.initPlayers = this.initPlayers.bind(this);
   }
 
-  init() {
+  initPlayers() {
     const playerOneData = data.get(PLAYER_ONE_KEY_PATH);
     const playerTwoData = data.get(PLAYER_TWO_KEY_PATH);
     data.set(PLAYER_ONE_KEY_PATH, {
@@ -37,8 +42,17 @@ class game {
     this.playerTwo.init();
   }
 
+  init() {
+    rule.init();
+    rule.activateAll();
+
+    this.initPlayers();
+  }
+
   update(deltaTime) {
     if(!data.get('status.running')) return;
+
+    rule.validateAll();
     // if (data.getCurrentState() === STATE_INITIAL) {
 
     // }

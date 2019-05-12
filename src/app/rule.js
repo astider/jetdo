@@ -12,12 +12,14 @@ const ruleModels = {
     activated: false,
     matched: false,
     check: () => {},
-  }
-}
+  },
+};
+
+const getRuleModels = () => Immutable.fromJS(ruleModels).toJS();
 
 class rule {
   static init() {
-    this.rules = ruleModels;
+    this.rules = getRuleModels();
   }
 
   /**
@@ -35,6 +37,13 @@ class rule {
     }
   }
 
+  static activateAll() {
+    if (this.rules === undefined) throw Error('Please setup by running "init" method');
+    Object.keys(this.rules).forEach((key) => {
+      this.rules[key].activated = true;
+    });
+  }
+
   /**
    * deactivate
    * @param {String[]} list the list of rule name
@@ -45,8 +54,15 @@ class rule {
 
     for (let i = 0; i < list.length; i += 1) {
       if (this.rules[list[i]] === undefined) continue;
-      this.rules[list[i]] = ruleModels[list[i]];
+      this.rules[list[i]] = getRuleModels()[list[i]];
     }
+  }
+
+  static deactivateAll() {
+    if (this.rules === undefined) throw Error('Please setup by running "init" method');
+    Object.keys(this.rules).forEach((key) => {
+      this.rules[key] = getRuleModels()[key];
+    });
   }
 
   static getAll() {
@@ -88,7 +104,7 @@ class rule {
         name: key,
         passed: rule.check(),
         activated: rule.activated,
-      }))
+      }));
   }
 
   static validate(ruleName) {
