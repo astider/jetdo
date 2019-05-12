@@ -1,25 +1,11 @@
 const data = require('../data');
+const ruleModel = require('./ruleModel');
 
-const ruleModels = {
-  onHit: {
-    priority: 0,
-    activated: false,
-    matched: false,
-    check: () => {},
-  },
-  onDie: {
-    priority: 0,
-    activated: false,
-    matched: false,
-    check: () => {},
-  },
-};
-
-const getRuleModels = () => Immutable.fromJS(ruleModels).toJS();
+const getRuleModel = () => Immutable.fromJS(ruleModel).toJS(); // => return object
 
 class rule {
   static init() {
-    this.rules = getRuleModels();
+    this.rules = getRuleModel();
   }
 
   /**
@@ -54,14 +40,14 @@ class rule {
 
     for (let i = 0; i < list.length; i += 1) {
       if (this.rules[list[i]] === undefined) continue;
-      this.rules[list[i]] = getRuleModels()[list[i]];
+      this.rules[list[i]] = getRuleModel()[list[i]];
     }
   }
 
   static deactivateAll() {
     if (this.rules === undefined) throw Error('Please setup by running "init" method');
     Object.keys(this.rules).forEach((key) => {
-      this.rules[key] = getRuleModels()[key];
+      this.rules[key] = getRuleModel()[key];
     });
   }
 

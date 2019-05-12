@@ -2,7 +2,7 @@ const data = require('../data');
 
 const { STATE_INITIAL, STATE_PLAYING } = require('../constants');
 
-const rule = require('./rule');
+const rule = require('../rule');
 
 const background = require('./background');
 const jet = require('./object/jet');
