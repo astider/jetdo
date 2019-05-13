@@ -22,7 +22,7 @@ class status {
   }
 
   drawBackground() {
-    this.statusLayer.fillStyle = 'rgba(0, 0, 0, 0.6)';
+    this.statusLayer.fillStyle = 'rgba(0, 0, 0, 0.75)';
     this.statusLayer.fillRect(0, 0, this.width, this.height);
   }
 

@@ -5,6 +5,7 @@ module.exports = {
     END: 'end',
   },
   STATUS_TEXT: {
-    INITIAL: 'Press start button ...'
+    INITIAL: 'Press start button ...',
+    PAUSE: 'Pause',
   }
 };

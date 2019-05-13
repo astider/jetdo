@@ -1,5 +1,5 @@
 const data = require('../data');
-const { STATE } = require('../constants');
+const { STATE, STATUS_TEXT } = require('../constants');
 
 class control {
   constructor() {
@@ -27,9 +27,11 @@ class control {
       }
       if (state === STATE.PLAYING) {
         data.set('status.running', false);
+        data.set('status.text', STATUS_TEXT.PAUSE);
       }
     } else {
       data.set('status.running', true);
+      data.set('status.text', null);
     }
   }
 
