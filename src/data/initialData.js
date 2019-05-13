@@ -24,10 +24,13 @@ const basePlayerModel = {
 
 module.exports = {
   status: {
+    text: 'Press start button ...',
     running: true,
   },
   state: {
     initial: true,
+    playing: false,
+    end: false,
   },
   keyBinding: {
     enter: 13,

@@ -12,23 +12,41 @@
       padding: 0;
       margin: 0;
     }
+    button {
+      padding: 10px;
+      border-radius: 8px;
+      outline: none;
+    }
     canvas {
       position: absolute;
     }
     #framerate-layer {
-      z-index: 3;
+      z-index: 4;
       position: absolute;
       top: 2px;
-      left: 4px;
+      left: 2px;
       font-size: 16px;
       font-weight: bold;
       color: white;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 5px;
+    }
+    #status-layer {
+      z-index: 3;
     }
     #game-layer {
       z-index: 2;
     }
     #static-background-layer {
       z-index: 1;
+    }
+    #control {
+      position: absolute;
+      display: flex;
+      bottom: 0;
+    }
+    #control * {
+      margin: 10px;
     }
   </style>
   <script defer src="polyfil.min.js"></script>
@@ -37,7 +55,11 @@
 </head>
 <body>
   <div id="framerate-layer"></div>
+  <canvas id="status-layer"></canvas>
   <canvas id="game-layer"></canvas>
   <div id="static-background-layer"></div>
+  <div id="control">
+    <button id="start-button">Start Button</button>
+  </div>
 </body>
 </html>

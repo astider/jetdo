@@ -1,9 +1,11 @@
 const data = require('../data');
 
-const { STATE_INITIAL, STATE_PLAYING } = require('../constants');
+const { STATE } = require('../constants');
 
 const rule = require('../rule');
 
+const control = require('./control');
+const status = require('./status');
 const background = require('./background');
 const jet = require('./object/jet');
 
@@ -14,6 +16,8 @@ class game {
   constructor(width, height) {
     this.width = width;
     this.height= height;
+    this.control = new control();
+    this.status = new status(width, height);
     this.background = new background(width, height);
     this.playerOne = new jet(PLAYER_ONE_KEY_PATH, false);
     this.playerTwo = new jet(PLAYER_TWO_KEY_PATH, true);
@@ -43,6 +47,7 @@ class game {
   }
 
   init() {
+    this.control.init();
     rule.init();
     rule.activateAll();
 
@@ -50,16 +55,21 @@ class game {
   }
 
   update(deltaTime) {
+    this.status.update();
     if(!data.get('status.running')) return;
 
     rule.validateAll();
   }
 
   render(ctx) {
+    const currentState = data.getCurrentState();
+    this.status.render();
     this.background.render();
-    if (data.getCurrentState() === STATE_INITIAL) {
+    if (currentState === STATE.INITIAL) {
+    } else if (currentState === STATE.PLAYING) {
       this.playerOne.render(ctx);
       this.playerTwo.render(ctx);
+    } else if (currentState === STATE.END) {
     }
   }
 }
