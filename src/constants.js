@@ -7,5 +7,9 @@ module.exports = {
   STATUS_TEXT: {
     INITIAL: 'Press start button ...',
     PAUSE: 'Pause',
-  }
+  },
+  HP_DIRECTION: {
+    BOTTOM_LEFT: 'BOTTOM_LEFT',
+    BOTTOM_RIGHT: 'BOTTOM_RIGHT',
+  },
 };

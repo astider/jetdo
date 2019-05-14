@@ -1,3 +1,5 @@
+const { STATUS_TEXT, HP_DIRECTION } = require('../constants');
+
 const basePlayerModel = {
   position: {
     x: 0,
@@ -6,11 +8,14 @@ const basePlayerModel = {
   color: {
     base: '',
     head: '',
+    hp: '',
   },
   size: {
     w: 50,
     h: 14,
   },
+  speed: 100,
+  movement: 10,
   hp: 5,
   keyBinding: {
     up: null,
@@ -24,7 +29,7 @@ const basePlayerModel = {
 
 module.exports = {
   status: {
-    text: 'Press start button ...',
+    text: STATUS_TEXT.INITIAL,
     running: true,
   },
   state: {
@@ -35,12 +40,27 @@ module.exports = {
   keyBinding: {
     enter: 13,
   },
+  ui: {
+    player: {
+      one: {
+        hpDirection: HP_DIRECTION.BOTTOM_LEFT,
+      },
+      two: {
+        hpDirection: HP_DIRECTION.BOTTOM_RIGHT,
+      },
+    },
+    window: {
+      h: 0,
+      w: 0,
+    }
+  },
   player: {
     one: {
       ...basePlayerModel,
       color: {
         base: 'red',
         head: 'orange',
+        hp: 'red',
       },
       keyBinding: {
         up: ['w', 'W'],
@@ -56,6 +76,7 @@ module.exports = {
       color: {
         base: 'blue',
         head: 'aqua',
+        hp: 'blue',
       },
       keyBinding: {
         up: ['ArrowUp'],

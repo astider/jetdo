@@ -1,4 +1,3 @@
-const data = require('../data');
 const ruleModel = require('./ruleModel');
 
 const getRuleModel = () => Immutable.fromJS(ruleModel).toJS(); // => return object
@@ -81,7 +80,7 @@ class rule {
     const rules = [];
     for (let i = 0; i < list.length; i += 1) {
       const ruleName = list[i];
-      if (this.rules[ruleName] === undefined) continue;
+      if (this.rules[ruleName] === undefined) rules.push({});
       rules.push({
         name: ruleName,
         passed: this.rules[ruleName].check(),

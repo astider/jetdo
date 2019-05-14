@@ -1,3 +1,5 @@
+const data = require('../data');
+
 module.exports = {
   onHit: {
     priority: 0,

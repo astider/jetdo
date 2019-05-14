@@ -6,7 +6,7 @@ class event {
   /**
    * add an event listener
    * @param {String} eventType e.g. keyup, keydown
-   * @param {String} eventName unique name
+   * @param {String} eventName unique name (it must include letters or underscore only => _aAbBcCdD...)
    * @param {string[]} keys
    * @param {Function} func
    */

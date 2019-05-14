@@ -30,6 +30,8 @@ class app {
 
   run() {
     data.init();
+    data.set('ui.window.w', this.width);
+    data.set('ui.window.h', this.height)
     this.game.init();
 
     setInterval(() => {
